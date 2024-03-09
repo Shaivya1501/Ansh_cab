@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <% if (successMessage) { %>
+    <div
+      class="flash-message success"
+      style="font-size: 18px; color: orangered; margin: 10px 0"
+    >
+      <%= successMessage %>
+    </div>
+    <% } %>
+
+    <!-- Display error flash message -->
+    <% if (errorMessage) { %>
+    <div class="flash-message error" style="font-size: 18px; color: orangered">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+    <!-- Table 2 - Bootstrap Brain Component -->
+    <section class="py-3 py-md-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+            <div class="card widget-card border-light shadow-sm">
+              <div class="card-body p-4">
+                <h5 class="card-title widget-card-title mb-4">
+                  Hello, admin Ansh
+                </h5>
+                <div class="table-responsive">
+                  <table
+                    class="table table-borderless bsb-table-xl text-nowrap align-middle m-0"
+                  >
+                    <h3>
+                      Add and delete all the service photo and content from here
+                      !
+                    </h3>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h5 class="m-0 fw-bold">Services</h5>
+                              <!-- <span class="text-secondary fs-7">SMM</span> -->
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-primary mb-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Add Service!
+                          </button>
+                          <!-- <h6 class="mb-1"></h6> -->
+                          <!-- <span class="text-secondary fs-7">United States</span> -->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h5 class="m-0 fw-bold">Our Taxi</h5>
+                              <!-- <span class="text-secondary fs-7">SMM</span> -->
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-primary mb-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Add taxi!
+                          </button>
+                          <!-- <h6 class="mb-1"></h6> -->
+                          <!-- <span class="text-secondary fs-7">United States</span> -->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h5 class="m-0 fw-bold">Add Reviews</h5>
+                              <!-- <span class="text-secondary fs-7">SMM</span> -->
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-primary mb-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Add Review!
+                          </button>
+                          <!-- <h6 class="mb-1"></h6> -->
+                          <!-- <span class="text-secondary fs-7">United States</span> -->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h5 class="m-0 fw-bold">Services</h5>
+                              <!-- <span class="text-secondary fs-7">SMM</span> -->
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-primary mb-1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Add Service!
+                          </button>
+                          <!-- <h6 class="mb-1"></h6> -->
+                          <!-- <span class="text-secondary fs-7">United States</span> -->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team 2 - Bootstrap Brain Component -->
+    <section class="py-3 py-md-5 py-xl-8">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+            <p class="display-5 text-center fw-bold">Services</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container overflow-hidden">
+        <div class="row gy-4 gy-lg-0">
+          <div class="col-12 col-lg-4">
+            <% service.forEach(function(elem) { %>
+            <div class="card border-0">
+              <figure
+                class="card-img-top m-0 overflow-hidden bsb-overlay-hover"
+              >
+                <img
+                  class="img-fluid bsb-scale bsb-hover-scale-up"
+                  loading="lazy"
+                  src="<%=elem.seviceimage%>"
+                  alt=""
+                />
+              </figure>
+              <div class="card-body border bg-white p-4">
+                <h2 class="card-title h4 fw-bold mb-3">
+                  <%= elem.servicename %>
+                </h2>
+                <p class="card-text text-secondary">
+                  <%=elem.Servicedescription%>
+                </p>
+                <div id="div" class="d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2"
+                  >
+                    Update Service
+                  </button>
+                  <a href="/service/delete/<%=elem._id%>"
+                    ><button type="button" class="btn btn-danger mx-3">
+                      Delete Service
+                    </button></a
+                  >
+                </div>
+              </div>
+              <!-- modal for add service  -->
+              <div
+                class="modal fade"
+                id="exampleModal2"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        update this service
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body fw-bold">
+                      <form
+                        action="/service/update/<%=elem._id%>"
+                        method="post"
+                        enctype="multipart/form-data"
+                      >
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label"
+                            >Update Service name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            name="servicename"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label"
+                            >Update Service Description</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputPassword1"
+                            name="servicedescription"
+                          />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal for add service  -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add service from here
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body fw-bold">
+            <form
+              action="/makeservice"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Service name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  name="service"
+                />
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Service Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  name="servicedescription"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Service image</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  name="serviceimage"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
