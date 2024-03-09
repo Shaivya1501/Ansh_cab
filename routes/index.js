@@ -3,6 +3,7 @@ var router = express.Router();
 const userModel = require("./users");
 const bookingModel = require("./booking");
 const serviceModel = require("./service");
+const taxiModel = require("./taxi");
 
 
 const passport = require("passport");
@@ -24,8 +25,10 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', async function(req, res, next) {
+  var service = await serviceModel.find({});
+  var taxi = await taxiModel.find({});
+  res.render('index',{service, taxi} );
 });
 
 router.post('/register', function (req, res, next) {
@@ -102,14 +105,24 @@ router.get('/adminlogin', function(req,res){
   res.render('adminlogin')
 })
 
-router.get('/admindashboard', isAdmin, isLoggedIn, async function(req,res){
-  var service = await serviceModel.find({});
-  const successMessage = req.flash('success');
-  const errorMessage = req.flash('error');
-  // console.log(service);
-  var admin = userModel.findOne({_id : req.user._id})
-  res.render('admindashboard' ,{service , successMessage, errorMessage })
-})
+router.get('/admindashboard', isAdmin, isLoggedIn, async function(req, res) {
+  try {
+      var service = await serviceModel.find({});
+      var taxi = await taxiModel.find({});
+
+      const successMessage = req.flash('success');
+      const errorMessage = req.flash('error');
+
+      // Fetch admin user with increased timeout
+      var admin = await userModel.findOne({_id: req.user._id}).maxTimeMS(30000); // Adjust timeout value as needed
+
+      res.render('admindashboard', { service, successMessage, errorMessage, taxi, admin });
+  } catch (error) {
+      console.error("Error fetching admin user:", error);
+      req.flash('error', 'Failed to load admin dashboard');
+      res.redirect('/'); // Redirect to home or another appropriate page
+  }
+});
 
 router.post('/makeservice', isAdmin, isLoggedIn, function(req,res){
   const serviceimg = req.files.serviceimage;
@@ -170,6 +183,109 @@ router.get('/service/delete/:id', isAdmin, async function (req, res, next) {
     res.redirect('/admindashboard');
 }
 });
+
+
+router.get('/carprofile', async function (req, res, next) {
+  res.render('carprofile')
+});
+
+router.post('/addtaxi', isAdmin, isLoggedIn, function(req, res) {
+  const taxiImage1 = req.files ? req.files.taxiImage1 : null;
+  const taxiImage2 = req.files ? req.files.taxiImage2 : null;
+  const taxiImage3 = req.files ? req.files.taxiImage3 : null;
+
+  // Check if all images are present
+  if (!taxiImage1 || !taxiImage2 || !taxiImage3) {
+      req.flash('error', 'Please upload all three images');
+      return res.redirect('/admindashboard');
+  }
+
+  // Upload each image to Cloudinary
+  Promise.all([
+      uploadToCloudinary(taxiImage1),
+      uploadToCloudinary(taxiImage2),
+      uploadToCloudinary(taxiImage3)
+  ]).then(async ([image1Url, image2Url, image3Url]) => {
+      try {
+          // Save the image URLs in your database
+          const newtaxi = new taxiModel({
+              taxiimage1: image1Url,
+              taxiimage2: image2Url,
+              taxiimage3: image3Url,
+              taxiname: req.body.taxiname,
+              taxitype: req.body.taxitype,
+              taxifare: req.body.taxiFare,
+              sittingcapecity: req.body.sittingCapecity,
+              taxidescription: req.body.taxiDescription
+          });
+          await newtaxi.save();
+          req.flash('success', 'taxi created successfully');
+          res.redirect('/admindashboard');
+      } catch (err) {
+          console.error("Error saving image URLs in database:", err);
+          // Handle error as needed
+          req.flash('error', 'Failed to create taxi');
+          res.redirect('/admindashboard');
+      }
+  }).catch(err => {
+      console.error("Error uploading images to Cloudinary:", err);
+      // Handle error as needed
+      req.flash('error', 'Failed to upload images');
+      res.redirect('/admindashboard');
+  });
+});
+
+function uploadToCloudinary(image) {
+  return new Promise((resolve, reject) => {
+      cloudinary.uploader.upload(image.tempFilePath, (err, result) => {
+          if (err) {
+              console.error("Error uploading image to Cloudinary:", err);
+              reject(err);
+          } else {
+              resolve(result.secure_url);
+          }
+      });
+  });
+}
+
+router.get('/taxi/delete/:id', isAdmin, async function (req, res, next) {
+  try {
+      // Find the taxi document by ID
+      const taxi = await taxiModel.findById(req.params.id);
+
+      // Extract URLs of all three images
+      const imageUrls = [taxi.taxiimage1, taxi.taxiimage2, taxi.taxiimage3];
+
+      // Delete each image from Cloudinary
+      await Promise.all(imageUrls.map(async (imageUrl) => {
+          const publicID = imageUrl.split('/').pop().split('.')[0];
+          await cloudinary.uploader.destroy(publicID);
+      }));
+
+      // Delete the taxi document from the database
+      await taxiModel.findByIdAndDelete(req.params.id);
+
+      // Set flash message
+      req.flash('success', 'Taxi deleted successfully');
+
+      res.redirect('/admindashboard');
+  } catch (error) {
+      console.error("Error deleting taxi:", error);
+      req.flash('error', 'Failed to delete taxi');
+      res.redirect('/admindashboard');
+  }
+});
+
+router.get('/carprofile/:id', async function (req, res, next) {
+  try {
+      var taxi = await taxiModel.findById(req.params.id);
+      res.render('carprofile', { taxi }); // Use res.render() to render a view with data
+  } catch (error) {
+      console.error("Error fetching taxi profile:", error);
+      res.status(500).send('Internal Server Error'); // Send a 500 error response if an error occurs
+  }
+});
+
 
 
 module.exports = router;
