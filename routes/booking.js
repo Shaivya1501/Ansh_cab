@@ -27,6 +27,10 @@ const bookingSchema = mongoose.Schema({
     date:{
         type : Date,
         required : true
+    },
+    bookingstatus:{
+        type : Boolean,
+        default : false,
     }
 });
 

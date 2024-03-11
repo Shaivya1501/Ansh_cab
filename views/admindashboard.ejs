@@ -27,6 +27,186 @@
       <%= errorMessage %>
     </div>
     <% } %>
+
+    <!-- Table 2 - Booking Section  -->
+    <section class="py-3 py-md-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+            <div class="card widget-card border-light shadow-sm">
+              <div class="card-body p-4">
+                <h2 class="card-title widget-card-title mb-4 fw-bold">
+                  Customer's Booking's
+                </h2>
+                <div class="table-responsive">
+                  <table
+                    class="table table-borderless bsb-table-xl text-nowrap align-middle m-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="fw-bold h4">Name</th>
+                        <th class="fw-bold h4">Taxitype</th>
+                        <th class="fw-bold h4">Email</th>
+                        <th class="fw-bold h4">Pickup-Location</th>
+                        <th class="fw-bold h4">Drop-Location</th>
+                        <th class="fw-bold h4">Contact</th>
+                        <th class="fw-bold h4">Date</th>
+                        <th class="fw-bold h4">Call</th>
+                        <th class="fw-bold h4">Confirm Booking</th>
+                        <th class="fw-bold h4">Reject Booking</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%booking.forEach(function(elem){%>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h6 class="m-0"><%=elem.Name%></h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.taxitype%></h6>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.email%></h6>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.pickuplocation%></h6>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.droplocation%></h6>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.contact%></h6>
+                        </td>
+                        <td>
+                          <% let dateString = new Date(elem.date).toLocaleDateString(); %>
+                          <h6 class="mb-1"><%= dateString %></h6>
+                        </td> 
+                        <td >
+                          <a  href="tel:<%=elem.contact%>"
+                            ><span class="badge bg-warning bsb-w-85 text-dark"
+                              >Call Customer</span
+                            ></a
+                          >
+                        </td>
+                        <td>
+                          <%if(elem.bookingstatus == false ){%>
+                            <a style="margin-left: 30px;" href="/confirmbooking/<%=elem._id%>"
+                              ><span class="badge bg-primary bsb-w-85 text-dark"
+                                >Confirm Booking</span
+                              ></a
+                            >
+                          <%}else{%>
+                            <a style="margin-left: 30px;" href=""
+                              ><span class="badge bg-success bsb-w-85 text-dark"
+                                >Booking Confirmed</span
+                              ></a
+                            >
+                          <%}%>
+                          
+                        </td>
+                        <td>
+                          <a style="margin-left: 30px;" href="/rejectbooking/<%=elem._id%>"
+                            ><span class="badge bg-danger bsb-w-85 text-dark"
+                              >Reject Booking</span
+                            ></a
+                          >
+                        </td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                    <hr />
+                  </table>
+                  <hr />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr />
+
+    <!-- Table 2 - Query Section  -->
+    <section class="py-3 py-md-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+            <div class="card widget-card border-light shadow-sm">
+              <div class="card-body p-4">
+                <h2 class="card-title widget-card-title mb-4 fw-bold">
+                  Customer's Queries
+                </h2>
+                <div class="table-responsive">
+                  <table
+                    class="table table-borderless bsb-table-xl text-nowrap align-middle m-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="fw-bold h4">Name</th>
+                        <th class="fw-bold h4">Mobile Number</th>
+                        <th class="fw-bold h4">Query</th>
+                        <th class="fw-bold h4">Status</th>
+                        <th class="fw-bold h4">Delete Query</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%queries.forEach(function(elem){%>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span
+                              class="fs-6 bsb-w-35 bsb-h-35 text-bg-primary rounded-circle d-flex align-items-center justify-content-center me-2"
+                            >
+                              <i class="bi bi-twitter-x"></i>
+                            </span>
+                            <div>
+                              <h6 class="m-0"><%=elem.queriename%></h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.Phone%></h6>
+                        </td>
+                        <td>
+                          <h6 class="mb-1"><%=elem.query%></h6>
+                        </td>
+                        <td>
+                          <a href="tel:<%=elem.Phone%>"
+                            ><span class="badge bg-success bsb-w-85"
+                              >Call Customer</span
+                            ></a
+                          >
+                        </td>
+                        <td>
+                          <a href="/delete/query/<%=elem._id%>"
+                            ><span class="badge bg-danger bsb-w-85"
+                              >Delete <%=elem.queriename%>'s Query</span
+                            ></a
+                          >
+                        </td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                    <hr />
+                  </table>
+                  <hr />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr />
     <!-- Table 2 - Bootstrap Brain Component -->
     <section class="py-3 py-md-5">
       <div class="container">
@@ -119,12 +299,94 @@
                             type="button"
                             class="btn btn-primary mb-1"
                             data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
+                            data-bs-target="#exampleModalreview"
                           >
                             Add Review!
                           </button>
                           <!-- <h6 class="mb-1"></h6> -->
                           <!-- <span class="text-secondary fs-7">United States</span> -->
+                          <!-- modal for add review  -->
+                          <div
+                            class="modal fade"
+                            id="exampleModalreview"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1
+                                    class="modal-title fs-5"
+                                    id="exampleModalLabel"
+                                  >
+                                    Add Reviews
+                                  </h1>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body fw-bold">
+                                  <form
+                                    action="/makereview"
+                                    method="post"
+                                    enctype="multipart/form-data"
+                                  >
+                                    <div class="mb-3">
+                                      <label
+                                        for="exampleInputEmail1"
+                                        class="form-label"
+                                        >Reviewer Name</label
+                                      >
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"
+                                        name="rname"
+                                      />
+                                    </div>
+                                    <div class="mb-3">
+                                      <label
+                                        for="exampleInputPassword1"
+                                        class="form-label"
+                                        >Write Review Below</label
+                                      >
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleInputPassword1"
+                                        name="wreview"
+                                      />
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label
+                                        for="exampleInputPassword1"
+                                        class="form-label"
+                                        >Add Reviewer Photo</label
+                                      >
+                                      <input
+                                        type="file"
+                                        class="form-control"
+                                        id="exampleInputPassword1"
+                                        name="rimage"
+                                      />
+                                    </div>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-primary"
+                                    >
+                                      Add Review
+                                    </button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                       <tr>
@@ -163,7 +425,7 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <!-- Team 2 -services -->
     <section class="py-3 py-md-5 py-xl-8">
       <div class="container">
@@ -191,10 +453,10 @@
               </figure>
               <div class="card-body border bg-white p-4">
                 <h2 class="card-title h4 fw-bold mb-3">
-                 Service Name:  <%= elem.servicename %>
+                  Service Name: <%= elem.servicename %>
                 </h2>
                 <p class="card-text text-secondary">
-                 Service Description: <%=elem.Servicedescription%>
+                  Service Description: <%=elem.Servicedescription%>
                 </p>
                 <div id="div" class="d-flex">
                   <button
@@ -276,7 +538,7 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <!-- Team 2 -taxi -->
     <section class="py-3 py-md-5 py-xl-8">
       <div class="container">
@@ -313,7 +575,7 @@
                   Taxi Fare: <%= elem.taxifare %>
                 </h3>
                 <h3 class="card-title h5 fw-bold mb-3">
-                 Sitting Capecity: <%= elem.sittingcapecity %>
+                  Sitting Capecity: <%= elem.sittingcapecity %>
                 </h3>
                 <p class="card-text text-secondary">
                   Taxi Description: <%=elem.taxidescription%>
@@ -398,6 +660,126 @@
         </div>
       </div>
     </section>
+    <hr />
+    <!-- review section  -->
+    <section class="py-3 py-md-5 py-xl-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-10 col-lg-8">
+            <h2 class="display-5 mb-4 fw-bold text-center">Reviews</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="container overflow-hidden">
+        <div class="row gy-3 gy-lg-4">
+          <%review.forEach(function(elem){%>
+          <div class="col-12 col-lg-6">
+            <div class="card">
+              <div class="card-body p-4 p-xxl-5">
+                <div
+                  class="bsb-ratings text-warning mb-3"
+                  data-bsb-star="5"
+                  data-bsb-star-off="0"
+                ></div>
+                <blockquote class="bsb-blockquote-icon mb-3 fw-bold h4">
+                  <%=elem.review%>
+                </blockquote>
+                <figure class="d-flex align-items-center m-0 p-0">
+                  <img
+                    class="img-fluid rounded rounded-circle m-0 border border-5"
+                    loading="lazy"
+                    src="<%=elem.reviewimage%>"
+                    alt=""
+                    style="max-width: 100px; height: auto"
+                  />
+                  <figcaption class="ms-3">
+                    <h3 class="mb-1 h5 fe-bold"><%=elem.reviewname%></h3>
+                  </figcaption>
+                </figure>
+              </div>
+              <div id="div" class="d-flex">
+                <button
+                  type="button"
+                  class="btn btn-warning mb-3 mx-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModalupdatereview"
+                >
+                  Update Review
+                </button>
+                <!-- modal for update review  -->
+                <div
+                  class="modal fade"
+                  id="exampleModalupdatereview"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Update Review from here
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body fw-bold">
+                        <form
+                          action="/updatereview/<%=elem._id%>"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"
+                              >Reviewer name</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputEmail1"
+                              aria-describedby="emailHelp"
+                              name="reviewname"
+                            />
+                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"
+                              >Review</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputEmail1"
+                              aria-describedby="emailHelp"
+                              name="reviewtype"
+                            />
+                          </div>
+
+                          <button type="submit" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="/review/delete/<%=elem._id%>"
+                  ><button type="button" class="btn btn-danger mx-3 mb-3">
+                    Delete Review
+                  </button></a
+                >
+              </div>
+            </div>
+          </div>
+          <%})%>
+        </div>
+      </div>
+    </section>
 
     <!-- modal for add service  -->
     <div
@@ -468,47 +850,43 @@
       </div>
     </div>
 
-     <!-- modal for add Taxi  -->
-     <div
-     class="modal fade"
-     id="exampleModal3"
-     tabindex="-1"
-     aria-labelledby="exampleModalLabel"
-     aria-hidden="true"
-   >
-     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h1 class="modal-title fs-5" id="exampleModalLabel">
-             Add service from here
-           </h1>
-           <button
-             type="button"
-             class="btn-close"
-             data-bs-dismiss="modal"
-             aria-label="Close"
-           ></button>
-         </div>
-         <div class="modal-body fw-bold">
-           <form
-             action="/addtaxi"
-             method="post"
-             enctype="multipart/form-data"
-           >
-             <div class="mb-3">
-               <label for="exampleInputEmail1" class="form-label"
-                 >Taxi name</label
-               >
-               <input
-                 type="text"
-                 class="form-control"
-                 id="exampleInputEmail1"
-                 aria-describedby="emailHelp"
-                 name="taxiname"
-               />
-               <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-             </div>
-             <div class="mb-3">
+    <!-- modal for add Taxi  -->
+    <div
+      class="modal fade"
+      id="exampleModal3"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add service from here
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body fw-bold">
+            <form action="/addtaxi" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Taxi name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  name="taxiname"
+                />
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
                   >Taxi Type</label
                 >
@@ -521,40 +899,40 @@
                 />
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
               </div>
-             <div class="mb-3">
-               <label for="exampleInputPassword1" class="form-label"
-                 >Taxi Image 1</label
-               >
-               <input
-                 type="file"
-                 class="form-control"
-                 id="exampleInputPassword1"
-                 name="taxiImage1"
-               />
-             </div>
-             <div class="mb-3">
-               <label for="exampleInputPassword1" class="form-label"
-                 >Taxi Image 2</label
-               >
-               <input
-                 type="file"
-                 class="form-control"
-                 id="exampleInputPassword1"
-                 name="taxiImage2"
-               />
-             </div>
-             <div class="mb-3">
-               <label for="exampleInputPassword1" class="form-label"
-                 >Taxi Image 3</label
-               >
-               <input
-                 type="file"
-                 class="form-control"
-                 id="exampleInputPassword1"
-                 name="taxiImage3"
-               />
-             </div>
-             <div class="mb-3">
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Taxi Image 1</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  name="taxiImage1"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Taxi Image 2</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  name="taxiImage2"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Taxi Image 3</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  name="taxiImage3"
+                />
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
                   >Taxi Fare</label
                 >
@@ -566,8 +944,8 @@
                   name="taxiFare"
                 />
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-             </div>
-             <div class="mb-3">
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
                   >Sitting Capecity</label
                 >
@@ -579,8 +957,8 @@
                   name="sittingCapecity"
                 />
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-             </div>
-             <div class="mb-3">
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
                   >Taxi Description</label
                 >
@@ -593,12 +971,12 @@
                 />
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
               </div>
-             <button type="submit" class="btn btn-primary">Submit</button>
-           </form>
-         </div>
-       </div>
-     </div>
-   </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

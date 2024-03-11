@@ -51,7 +51,7 @@
       <header class="header_section">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
               <span> Ansh cab services </span>
             </a>
             <button
@@ -72,24 +72,24 @@
               >
                 <ul class="navbar-nav">
                   <li class="nav-item active">
-                    <a class="nav-link" href="index.html"
+                    <a class="nav-link" href="/"
                       >Home <span class="sr-only">(current)</span></a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html"> About</a>
+                    <a class="nav-link" href="/about"> About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="service.html"> Services </a>
+                    <a class="nav-link" href="/service"> Services </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="Taxi.html">Our Taxi</a>
+                    <a class="nav-link" href="/taxi">Our Taxi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    <a class="nav-link" href="/contact">Contact Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Admin Login</a>
+                    <a class="nav-link" href="/adminlogin">Admin Login</a>
                   </li>
                 </ul>
               </div>
@@ -270,18 +270,17 @@
         </div>
         <div class="service_container">
           <%service.forEach(function(elem){%>
-            <div class="box">
-              <div class="img-box">
-                <img src="<%=elem. seviceimage%>" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5><%=elem.servicename%></h5>
-                <p><%=elem.Servicedescription %></p>
-                <a href=""> Read More </a>
-              </div>
+          <div class="box">
+            <div class="img-box">
+              <img src="<%=elem. seviceimage%>" alt="" />
             </div>
+            <div class="detail-box">
+              <h5><%=elem.servicename%></h5>
+              <p><%=elem.Servicedescription %></p>
+              <a href=""> Read More </a>
+            </div>
+          </div>
           <%})%>
-
         </div>
       </div>
     </section>
@@ -310,174 +309,176 @@
       <div class="container overflow-hidden">
         <div class="row gy-4 gy-lg-0">
           <%taxi.forEach(function(elem){%>
-            <div class="col-12 col-lg-4">
-              <div class="card border-0">
-                <figure
-                  class="card-img-top m-0 overflow-hidden bsb-overlay-hover"
-                >
-                  <a href="#!">
-                    <img
-                      class="img-fluid bsb-scale bsb-hover-scale-up"
-                      loading="lazy"
-                      src="<%=elem.taxiimage1%>"
-                      alt=""
+          <div class="col-12 col-lg-4">
+            <div class="card border-0">
+              <figure
+                class="card-img-top m-0 overflow-hidden bsb-overlay-hover"
+              >
+                <a href="#!">
+                  <img
+                    class="img-fluid bsb-scale bsb-hover-scale-up"
+                    loading="lazy"
+                    src="<%=elem.taxiimage1%>"
+                    alt=""
+                  />
+                </a>
+                <figcaption>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    fill="currentColor"
+                    class="bi bi-eye text-white bsb-hover-fadeInLeft"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
                     />
-                  </a>
-                  <figcaption>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      fill="currentColor"
-                      class="bi bi-eye text-white bsb-hover-fadeInLeft"
-                      viewBox="0 0 16 16"
+                    <path
+                      d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                    />
+                  </svg>
+                  <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">
+                    Read More
+                  </h4>
+                </figcaption>
+              </figure>
+              <div class="card-body border bg-warning p-4">
+                <h2
+                  class="card-title h4 fw-bold mb-2"
+                  style="font-weight: bold"
+                >
+                  Name : <%=elem.taxiname%>
+                </h2>
+                <h5 class="card-text text-dark mb-2" style="font-weight: bold">
+                  Taxi Type : <%=elem.taxitype%>
+                </h5>
+                <h5 class="card-text text-dark mb-2" style="font-weight: bold">
+                  Taxi fare per km : <%=elem.taxifare%>
+                </h5>
+                <h5 class="card-text text-dark mb-2" style="font-weight: bold">
+                  Sitting Capecity : <%=elem.sittingcapecity%>
+                </h5>
+                <p class="card-text text-secondary">
+                  Car Discription : <%=elem.taxidescription%>
+                </p>
+              </div>
+              <div class="card-footer border border-top-0 bg-white p-4">
+                <ul
+                  class="nav mb-0 bsb-nav-sep d-flex align-items-center justify-content-between"
+                >
+                  <li class="nav-item text-secondary">
+                    <a
+                      class="nav-link link-secondary p-0 pe-3 d-inline-flex align-items-center"
+                      href="/carprofile/<%=elem._id%>"
                     >
-                      <path
-                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
-                      />
-                      <path
-                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
-                      />
-                    </svg>
-                    <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">
-                      Read More
-                    </h4>
-                  </figcaption>
-                </figure>
-                <div class="card-body border bg-warning p-4">
-                  <h2
-                    class="card-title h4 fw-bold mb-2"
-                    style="font-weight: bold"
-                  >
-                    Name : <%=elem.taxiname%>
-                  </h2>
-                  <h5 class="card-text text-dark mb-2" style="font-weight: bold">
-                    Taxi Type : <%=elem.taxitype%>
-                  </h5>
-                  <h5 class="card-text text-dark mb-2" style="font-weight: bold">
-                    Taxi fare per km : <%=elem.taxifare%>
-                  </h5>
-                  <h5 class="card-text text-dark mb-2" style="font-weight: bold">
-                    Sitting Capecity : <%=elem.sittingcapecity%>
-                  </h5>
-                  <p class="card-text text-secondary">Car Discription : <%=elem.taxidescription%></p>
-                </div>
-                <div class="card-footer border border-top-0 bg-white p-4">
-                  <ul
-                    class="nav mb-0 bsb-nav-sep d-flex align-items-center justify-content-between"
-                  >
-                    <li class="nav-item text-secondary">
-                      <a
-                        class="nav-link link-secondary p-0 pe-3 d-inline-flex align-items-center"
-                        href="/carprofile/<%=elem._id%>"
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        fill="currentColor"
+                        class="bi bi-lightbulb text-primary"
+                        viewBox="0 0 16 16"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          fill="currentColor"
-                          class="bi bi-lightbulb text-primary"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"
-                          />
-                        </svg>
-                        <span class="ms-2 fs-6">View Taxi Images</span>
-                      </a>
-                    </li>
-                    <li class="nav-item text-secondary">
-                      <button
-                        class="btn btn-success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal3"
-                      >
-                        Book Now
-                      </button>
-  
-                      <!-- Modal -->
-                      <div
-                        class="modal fade"
-                        id="exampleModal3"
-                        tabindex="-1"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1
-                                class="modal-title fs-5 text-dark fw-bold"
-                                id="exampleModalLabel"
-                              >
-                                Book Your Taxi
-                              </h1>
-                              <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                            <div class="modal-body">
-                              <form action="/booking" method="post">
+                        <path
+                          d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"
+                        />
+                      </svg>
+                      <span class="ms-2 fs-6">View Taxi Images</span>
+                    </a>
+                  </li>
+                  <li class="nav-item text-secondary">
+                    <button
+                      class="btn btn-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal3"
+                    >
+                      Book Now
+                    </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="exampleModal3"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5 text-dark fw-bold"
+                              id="exampleModalLabel"
+                            >
+                              Book Your Taxi
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="/booking" method="post">
+                              <input
+                                type="text"
+                                placeholder="Name"
+                                name="custname"
+                                class="mb-2"
+                              />
+                              <input
+                                type="email"
+                                placeholder="Enter Your Email"
+                                name="email"
+                                class="mb-2"
+                              />
+
+                              <input
+                                list="browsers"
+                                name="cartype"
+                                placeholder="car name"
+                                value="<%=elem.taxiname%>"
+                                class="mb-2"
+                                readonly
+                              />
+                              <input
+                                type="date"
+                                placeholder="Pick Up Location"
+                                name="date"
+                                class="mb-2"
+                              />
+                              <input
+                                type="text"
+                                placeholder="Pick Up Location"
+                                name="pickloc"
+                                class="mb-2"
+                              />
+                              <input
+                                type="text"
+                                placeholder="Drop Location"
+                                name="droploc"
+                                class="mb-2"
+                              />
+                              <div class="btm_input">
                                 <input
                                   type="text"
-                                  placeholder="Name"
-                                  name="custname"
-                                  class="mb-2"
+                                  placeholder="Your Phone Number"
+                                  name="number"
                                 />
-                                <input
-                                  type="email"
-                                  placeholder="Enter Your Email"
-                                  name="email"
-                                  class="mb-2"
-                                />
-  
-                                <input
-                                  list="browsers"
-                                  name="cartype"
-                                  placeholder="car name"
-                                  value="car name"
-                                  class="mb-2"
-                                  readonly
-                                />
-                                <input
-                                  type="date"
-                                  placeholder="Pick Up Location"
-                                  name="date"
-                                  class="mb-2"
-                                />
-                                <input
-                                  type="text"
-                                  placeholder="Pick Up Location"
-                                  name="pickloc"
-                                  class="mb-2"
-                                />
-                                <input
-                                  type="text"
-                                  placeholder="Drop Location"
-                                  name="droploc"
-                                  class="mb-2"
-                                />
-                                <div class="btm_input">
-                                  <input
-                                    type="text"
-                                    placeholder="Your Phone Number"
-                                    name="number"
-                                  />
-                                  <button>Book Now</button>
-                                </div>
-                              </form>
-                            </div>
+                                <button>Book Now</button>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
-                    </li>
-                  </ul>
-                </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
           <%})%>
         </div>
       </div>
@@ -499,38 +500,21 @@
         <div class="client_container">
           <div class="carousel-wrap">
             <div class="owl-carousel">
-              <div class="item">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="/images/client-1.png" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h3>Aliqua</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et amet,
-                      consectetur adipiscing
-                    </p>
-                    <img src="/images/quote.png" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="/images/client-2.png" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h3>Liqua</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et amet,
-                      consectetur adipiscing
-                    </p>
-                    <img src="/images/quote.png" alt="" />
+              <%review.forEach(function(elem){%>
+                <div class="item">
+                  <div class="box">
+                    <div class="img-box">
+                      <img src="<%=elem.reviewimage%>" alt="" />
+                    </div>
+                    <div class="detail-box">
+                      <h3><%=elem.reviewname%></h3>
+                      <p>
+                        <%=elem.review%>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <%})%>
             </div>
           </div>
         </div>
@@ -545,7 +529,7 @@
       <div class="container">
         <div class="heading_container">
           <h2>
-            Any Problems <br />
+            Any Queries <br />
             Any Questions
           </h2>
         </div>
@@ -555,13 +539,14 @@
           <div class="col-md-5 offset-md-1">
             <div class="contact_form">
               <h4>Get In touch</h4>
-              <form action="">
-                <input type="text" placeholder="Name" />
-                <input type="text" placeholder="Phone Number" />
+              <form action="/queries" method="post">
+                <input type="text" placeholder="Name" name="name" />
+                <input type="text" placeholder="Phone Number" name="mobile"/>
                 <input
                   type="text"
                   placeholder="Message"
                   class="message_input"
+                  name="message"
                 />
                 <button>Send</button>
               </form>
@@ -587,24 +572,36 @@
               <h2>Contact Us</h2>
               <div class="text-box">
                 <h5>Address</h5>
-                <a href="https://www.google.com/maps/place/Ansh+Cab+service/@30.29427,78.006807,14z/data=!4m6!3m5!1s0x390929ea5f5c3bd7:0x400ae226928be11c!8m2!3d30.2942698!4d78.0068065!16s%2Fg%2F11kk64njgr?hl=en&entry=ttu"><p style="color: black; font-weight: bold;">
-                  Phase 1, 77, opposite Durga mandir, Shakti Vihar, Majra, Dehradun, Uttarakhand 248171
-                </p></a>
+                <a
+                  href="https://www.google.com/maps/place/Ansh+Cab+service/@30.29427,78.006807,14z/data=!4m6!3m5!1s0x390929ea5f5c3bd7:0x400ae226928be11c!8m2!3d30.2942698!4d78.0068065!16s%2Fg%2F11kk64njgr?hl=en&entry=ttu"
+                  ><p style="color: black; font-weight: bold">
+                    Phase 1, 77, opposite Durga mandir, Shakti Vihar, Majra,
+                    Dehradun, Uttarakhand 248171
+                  </p></a
+                >
               </div>
               <div class="text-box">
                 <h5>Contact Number</h5>
-               <a href="tel:7351183413"> <p style="color: black; font-weight: bold;">
-                07351183413
-              </p></a>
+                <a href="tel:7351183413">
+                  <p style="color: black; font-weight: bold">07351183413</p></a
+                >
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="img-box">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13779.970749982936!2d78.0068065!3d30.2942698!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929ea5f5c3bd7%3A0x400ae226928be11c!2sAnsh%20Cab%20service!5e0!3m2!1sen!2sin!4v1709987880684!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                  class="embed-responsive-item"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13779.970749982936!2d78.0068065!3d30.2942698!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929ea5f5c3bd7%3A0x400ae226928be11c!2sAnsh%20Cab%20service!5e0!3m2!1sen!2sin!4v1709987880684!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
-              
             </div>
           </div>
         </div>
@@ -688,24 +685,24 @@
           <div class="info_links">
             <ul>
               <li class=" ">
-                <a class="" href="index.html"
+                <a class="" href="/"
                   >Home <span class="sr-only">(current)</span></a
                 >
               </li>
               <li class="">
-                <a class="" href="about.html"> About</a>
+                <a class="" href="/about"> About</a>
               </li>
               <li class="">
-                <a class="" href="service.html"> Services </a>
+                <a class="" href="/service"> Services </a>
               </li>
               <li class="">
-                <a class="" href="news.html"> News</a>
+                <a class="" href="/taxi"> Our Taxi</a>
               </li>
               <li class="">
-                <a class="" href="contact.html">Contact Us</a>
+                <a class="" href="/contact">Contact Us</a>
               </li>
               <li class="">
-                <a class="" href="#">Login</a>
+                <a class="" href="/admin login">Admin Login</a>
               </li>
             </ul>
           </div>
